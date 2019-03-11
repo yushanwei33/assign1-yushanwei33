@@ -13,10 +13,10 @@ int soldierX,soldierY;
 
 void setup() {
   //size
-	size(640, 480, P2D);
+  size(640, 480, P2D);
 
   //loadImage
-	bg=loadImage("img/bg.jpg");
+  bg=loadImage("img/bg.jpg");
   soil=loadImage("img/soil.png");
   life=loadImage("img/life.png");
   groundhog=loadImage("img/groundhog.png");
@@ -37,9 +37,8 @@ void setup() {
 }
 
 void draw() {
-  
   //bg.soil.life
-	background(bg);
+  background(bg);
   image(soil,0,160);
   image(life,10,10);
   image(life,80,10);
