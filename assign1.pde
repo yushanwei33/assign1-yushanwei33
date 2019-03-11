@@ -1,3 +1,11 @@
+PImage bg;
+PImage soil;
+PImage life;
+PImage groundhog;
+PImage robot;
+PImage soldier;
+
+int robotX,robotY;
 int laserX,laserY;
 int laserMove,laserRange;
 int soldierX,soldierY;
