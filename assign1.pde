@@ -6,17 +6,17 @@ PImage robot;
 PImage soldier;
 
 int robotX,robotY;
-int laserX,laserY;
-int laserMove,laserRange;
+int laserLeftX,laserRightX,laserY;
+
 int soldierX,soldierY;
 
 
 void setup() {
   //size
-  size(640, 480, P2D);
+	size(640, 480, P2D);
 
   //loadImage
-  bg=loadImage("img/bg.jpg");
+	bg=loadImage("img/bg.jpg");
   soil=loadImage("img/soil.png");
   life=loadImage("img/life.png");
   groundhog=loadImage("img/groundhog.png");
@@ -28,8 +28,10 @@ void setup() {
   robotY=160+80*floor(random(0,4));
   
   //laserPosition
-  laserX=robotX+25;
+  laserLeftX=robotX+25;
+  laserRightX=robotX+25;
   laserY=robotY+37;
+
 
   //soldierPosition
   soldierX=floor(random(0,560));
@@ -37,8 +39,9 @@ void setup() {
 }
 
 void draw() {
+  
   //bg.soil.life
-  background(bg);
+	background(bg);
   image(soil,0,160);
   image(life,10,10);
   image(life,80,10);
@@ -48,7 +51,7 @@ void draw() {
   stroke(255,255,0);
   strokeWeight(5);
   fill(253,184,19);
-  ellipse(590,50,120,120);
+  circle(590,50,120);
   
   //grass
   noStroke();
@@ -59,11 +62,17 @@ void draw() {
   image(groundhog,280,80);
   
   //laser
-  laserMove+=2;
-  laserRange=laserMove%185;
   stroke(255,0,0);
   strokeWeight(10);
-  line(laserX-laserRange,laserY,laserX-laserRange+40,laserY);
+
+  line(laserLeftX,laserY,laserRightX,laserY);
+  laserLeftX-=2;  
+  if(laserLeftX<robotX+25-40){
+    laserRightX-=2;
+  }if(laserLeftX<robotX+25-160){
+    laserLeftX=robotX+25;
+    laserRightX=robotX+25;
+  }
   
   //robot
   image(robot,robotX,robotY);
@@ -71,5 +80,7 @@ void draw() {
   //soldier
   image(soldier,soldierX,soldierY);
   soldierX+=3;
-  soldierX%=720;
+  if (soldierX>width){
+    soldierX=-80;
+  }
 }
